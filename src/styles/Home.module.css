@@ -1,0 +1,166 @@
+.homeBanner {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
+  object-fit: contain;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 1;
+}
+.homeCarouselImg {
+  height: auto;
+  width: 100%;
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 30%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+.homeScreen {
+  background-color: rgb(238, 235, 235);
+  padding-bottom: 30px;
+}
+.homeBannerimg {
+  height: 80vh;
+  width: 100% !important;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+.homeBannerItemDiv {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+  width: 100%;
+  position: relative;
+  margin-top: -300px;
+  z-index: 10;
+  margin-bottom: 20px;
+}
+.homeBannerItemDiv2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+  width: 100%;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.homeBannerItemDivCard {
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 0 15px;
+  width: 100%;
+}
+.homeBannerItemDivCardTitle {
+  padding: 20px;
+  font-size: 21px;
+  font-weight: 700;
+}
+.imgHomeBannerItemDivCard {
+  margin: 10px 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.imgBannerHomeDiv {
+  display: flex;
+  flex-direction: column;
+}
+.imgBannerHomeDivImg {
+  object-fit: contain;
+  max-height: 110px;
+  width: 100%;
+}
+.imgBannerImgName {
+  font-size: 12px;
+  font-weight: 500;
+}
+.seeMoreHomeBanner {
+  margin: 10px 20px;
+  font-size: 13px;
+  color: #007185;
+  font-weight: 600;
+}
+
+@media (max-width: 1200px) {
+  .homeBannerItemDiv {
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    margin-top: -20%;
+  }
+
+  .homeBannerItemDiv2 {
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .homeBannerItemDiv,
+  .homeBannerItemDiv2 {
+    grid-template-columns: repeat(2, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .homeBannerItemDiv,
+  .homeBannerItemDiv2 {
+    grid-template-columns: repeat(1, minmax(250px, 1fr));
+  }
+}
+
+.slider-container {
+  width: 100%;
+  padding: 20px 0;
+  background-color: white;
+  position: relative;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.Sales-Header-Home {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 31.83px;
+  color: #000000;
+  margin-left: 49px;
+  margin-bottom: 15px;
+}
+
+.slider-item img {
+  width: 162px;
+  height: 255px;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+}
+
+.slick-prev,
+.slick-next {
+  width: 30px;
+  height: 30px;
+  z-index: 10;
+}
+
+.slick-prev {
+  left: 25px !important;
+}
+
+.slick-next {
+  right: 25px !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black !important;
+  font-size: 25px;
+}
