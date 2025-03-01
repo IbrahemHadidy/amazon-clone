@@ -1,3 +1,4 @@
+import { useAppDispatch, useAppSelector } from '@app/hooks';
 import RadioButton from '@components/common/ui/buttons/RadioButton';
 import {
   setCategory,
@@ -11,7 +12,6 @@ import {
 import useResponsiveViewport from '@hooks/useResponsiveViewport';
 import { useState } from 'react';
 import sortOptions from './sortOptions';
-import { useAppDispatch, useAppSelector } from '@app/hooks';
 
 // Types
 import type { ChangeEvent } from 'react';
@@ -217,7 +217,7 @@ export default function SearchFilters() {
       {isViewport900OrLess && (
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`fixed top-1/4 left-0 z-50 -translate-y-1/2 cursor-pointer rounded-r-2xl bg-black/50 p-3 pl-2 text-white shadow-lg hover:bg-black ${isOpen ? 'hidden' : ''}`}
+          className={`fixed top-1/4 left-0 z-60 -translate-y-1/2 cursor-pointer rounded-r-2xl bg-black/50 p-3 pl-2 text-white shadow-lg hover:bg-black ${isOpen ? 'hidden' : ''}`}
         >
           ☰
         </button>
@@ -225,7 +225,7 @@ export default function SearchFilters() {
 
       {/* Show Filter for Small Screens */}
       <aside
-        className={`fixed top-0 left-0 z-40 h-full w-[280px] transform overflow-y-auto bg-white p-4 shadow-md transition-transform duration-300 ease-in-out will-change-transform ${
+        className={`fixed top-0 left-0 z-50 h-full w-[280px] transform overflow-y-auto bg-white p-4 shadow-md transition-transform duration-300 ease-in-out will-change-transform ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
