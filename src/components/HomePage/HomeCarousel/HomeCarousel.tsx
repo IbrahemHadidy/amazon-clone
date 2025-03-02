@@ -35,6 +35,7 @@ export default function HomeCarousel() {
           key={index}
           className={styles.homeCarouselImg}
           src={img}
+          loading="lazy"
           alt={`Slide ${index + 1}`}
         />
       ))}

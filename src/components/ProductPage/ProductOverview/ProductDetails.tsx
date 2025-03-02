@@ -53,7 +53,13 @@ export default function ProductDetails({ data }: ProductDetailsProps) {
       <div className={styles.features}>
         <div className="flex flex-row">
           <div className={styles.featureItem}>
-            <img src={paymentCard} height={40} width={40} alt="payment card" />
+            <img
+              src={paymentCard}
+              height={40}
+              width={40}
+              loading="lazy"
+              alt="payment card"
+            />
             <span>Electronic payment Only</span>
           </div>
           <div className={styles.featureItem}>

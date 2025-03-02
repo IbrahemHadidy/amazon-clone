@@ -53,6 +53,7 @@ export default function WishlistItem({ item }: WishlistItemProps) {
             src={item.thumbnail}
             alt={item.title}
             className={styles.itemImage}
+            loading="lazy"
           />
         </Link>
         <div className={styles.itemContent}>

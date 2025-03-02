@@ -26,6 +26,7 @@ export default function HomeCollecCards2() {
                   className={styles.imgBannerHomeDivImg}
                   src={item.thumbnail}
                   alt={item.title}
+                  loading="lazy"
                 />
                 <div className={styles.imgBannerImgName}>{item.title}</div>
               </Link>

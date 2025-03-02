@@ -8,8 +8,8 @@ import NextArrow from './NextArrow';
 import PrevArrow from './PrevArrow';
 
 // Types
-import type { Settings as SliderSettings } from 'react-slick';
 import type Product from '@interfaces/product';
+import type { Settings as SliderSettings } from 'react-slick';
 
 interface HomeSliderProps {
   title: string;
@@ -76,6 +76,7 @@ export default function HomeSlider({ title, items }: HomeSliderProps) {
               src={item.thumbnail}
               alt={`Slide ${item.id}`}
               className="slider-img"
+              loading="lazy"
             />
           </Link>
         ))}

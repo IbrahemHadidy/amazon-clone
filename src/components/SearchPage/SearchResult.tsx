@@ -52,6 +52,7 @@ export default function SearchResult({ data }: SearchResultProps) {
               width="255px"
               src={data.thumbnail}
               alt={data.title ?? 'Product image'}
+              loading="lazy"
             />
           </Link>
 

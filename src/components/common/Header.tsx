@@ -148,6 +148,7 @@ export default function Header() {
                       src={item.thumbnail}
                       alt={item.title}
                       className="h-12 w-12 object-cover"
+                      loading="lazy"
                     />
                     <div className="flex flex-col">
                       <p className="font-semibold">{item.title}</p>
