@@ -1,54 +1,73 @@
-# React + TypeScript + Vite
+# Amazon Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Amazon Clone is a modern e-commerce web application built with Vite, React, TypeScript, and Redux Toolkit. It fetches product data from the DummyJSON API and provides a seamless shopping experience with features like infinite scroll, toasts for notifications, and a slick carousel.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Vite** for fast and optimized development.
+- **React & TypeScript** for a scalable and maintainable codebase.
+- **Redux Toolkit** for state management.
+- **Infinite Scroll** on the search page for a smooth user experience.
+- **Toast Notifications** for user feedback.
+- **Slick Carousel** for an interactive product display.
+- **Modular Folder Structure** for clean and organized code.
+- **Lazy Loading** for optimized performance.
 
-## Expanding the ESLint configuration
+## Folder Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname
-    }
-  }
-});
+```
+src/
+│── assets/            # Static assets (images, icons, etc.)
+│── components/        # Reusable components & pages
+│── styles/            # CSS modules for styling
+│── services/          # API services & localStorage utilities
+│── features/          # Redux Toolkit slices, thunks, and listeners for state management
+│── utils/             # Reusable utility functions
+│── hooks/             # Custom React hooks
+│── app/               # Redux store configuration
+│── interfaces/        # TypeScript interfaces
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Installation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x';
-import reactDom from 'eslint-plugin-react-dom';
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/IbrahemHadidy/amazon-clone.git
+   ```
+2. Navigate to the project folder:
+   ```sh
+   cd amazon-clone
+   ```
+3. Install dependencies using PNPM:
+   ```sh
+   pnpm install
+   ```
+4. Start the development server:
+   ```sh
+   pnpm dev
+   ```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules
-  }
-});
-```
+## Development & Code Quality
+
+This project follows modern best practices to ensure clean, maintainable, and high-quality code.
+
+- **Vite**: Fast and optimized development environment.
+- **TypeScript**: Strongly typed codebase for better maintainability.
+- **Redux Toolkit**: Efficient and scalable state management.
+- **ESLint**: Enforces consistent code quality and best practices.
+- **Prettier**: Ensures uniform code formatting across the project.
+
+## Usage
+
+- Browse products fetched from the DummyJSON API.
+- Search for products with infinite scrolling.
+- Add products to the cart and wishlist.
+- View product details in a dedicated page.
+
+## Technologies Used
+
+- **Frontend**: React 19, TypeScript, Vite
+- **State Management**: Redux Toolkit
+- **Styling**: CSS Modules, Tailwind
+- **API**: DummyJSON
+- **Libraries**: React Router, Slick Carousel, React Toastify
