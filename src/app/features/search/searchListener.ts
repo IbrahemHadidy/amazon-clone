@@ -28,15 +28,18 @@ listen({
     const { searchTitle, searchCategory } = action.payload;
 
     if (isSearchInitialized) return;
+    dispatch(setIsSearchInitialized(true));
 
     if (typeof searchTitle === 'string') dispatch(setTitle(searchTitle));
     if (typeof searchCategory === 'string')
       dispatch(setCategory(searchCategory));
 
     const categories = await products.getAllCategories();
-    const initialResults = await products.getAll();
+    const initialResults = await products.getByFilter({
+      title: searchTitle ?? undefined,
+      category: searchCategory ?? undefined
+    });
 
-    dispatch(setIsSearchInitialized(true));
     dispatch(setCategories(categories));
     dispatch(setResults(initialResults));
   }
