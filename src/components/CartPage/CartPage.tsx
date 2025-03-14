@@ -109,7 +109,11 @@ export default function CartPage() {
               {/*---------------------------- Cart Items ---------------------------*/}
               <div className={styles.cartItems}>
                 {cartItems.map((item) => (
-                  <CartItem item={item} key={item.id} />
+                  <CartItem
+                    item={item}
+                    quantity={item.quantity ?? 1}
+                    key={item.id}
+                  />
                 ))}
               </div>
             </main>
@@ -128,7 +132,10 @@ export default function CartPage() {
                 &nbsp;$
                 {cartItems
                   .filter((item) => selectedItems.includes(item.id))
-                  .reduce((acc, item) => acc + item.price, 0)
+                  .reduce(
+                    (acc, item) => acc + item.price * (item.quantity ?? 1),
+                    0
+                  )
                   .toFixed(2)}
               </span>
             </h3>

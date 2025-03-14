@@ -13,7 +13,6 @@ import {
   removeFromWishlist
 } from '@features/wishlist/wishlistThunks';
 import type Product from '@interfaces/product';
-import type { ChangeEvent } from 'react';
 
 interface ProductActionsProps {
   data: Product;
@@ -25,17 +24,11 @@ export default function ProductActions({ data }: ProductActionsProps) {
 
   //---------------------------- States ---------------------------//
   const { currentUserData } = useAppSelector((state) => state.auth);
-  const [quantity, setQuantity] = useState<number>(1);
   const [isConfirmLoginModalOpen, setIsConfirmLoginModalOpen] =
     useState<boolean>(false);
   const [isAlertModalOpen, setIsAlertModalOpen] = useState<boolean>(false);
 
   //------------------------ Event Handlers -----------------------//
-  const handleQuantityChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const newQuantity = parseInt(e.target.value);
-    setQuantity(newQuantity);
-  };
-
   const handleAddToCart = () => {
     if (currentUserData === null) {
       setIsConfirmLoginModalOpen(true);
@@ -117,31 +110,6 @@ export default function ProductActions({ data }: ProductActionsProps) {
 
           <div className={styles.stockStatus}>
             Usually ships within 4 to 5 days
-          </div>
-
-          <div className={styles.quantitySelector}>
-            <label>Quantity:</label>
-            <select
-              value={quantity}
-              onChange={handleQuantityChange}
-              className={styles.formSelect}
-            >
-              {data?.stock ? (
-                Array.from({ length: data.stock }, (_, index) => index + 1).map(
-                  (num) => (
-                    <option
-                      key={num}
-                      value={num}
-                      className={styles.optionSelect}
-                    >
-                      {num}
-                    </option>
-                  )
-                )
-              ) : (
-                <option disabled>No options available</option>
-              )}
-            </select>
           </div>
 
           <div className={styles.actionButtons}>

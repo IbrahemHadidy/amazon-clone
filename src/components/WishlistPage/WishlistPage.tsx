@@ -11,10 +11,8 @@ import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 
 // Types
-import {
-  addToWishlist,
-  clearWishlist
-} from '@features/wishlist/wishlistThunks';
+import { addToCart } from '@features/cart/cartThunks';
+import { clearWishlist } from '@features/wishlist/wishlistThunks';
 import WishlistItem from './WishlistItem';
 
 export default function WishlistPage() {
@@ -57,10 +55,13 @@ export default function WishlistPage() {
     dispatch(clearWishlist({ userId: currentUserData!.id }));
   };
 
-  const handleAddToWishlistClick = () => {
+  const handleAddToCartClick = () => {
     if (currentUserData) {
-      addToWishlist({ userId: currentUserData.id, itemIds: selectedItems });
-      toast.success('Item(s) added to Wishlist.');
+      dispatch(
+        addToCart({ userId: currentUserData.id, itemIds: selectedItems })
+      );
+      navigate('/cart');
+      toast.success('Item(s) added to Cart.');
     } else {
       setIsLoginAlertOpen(true);
     }
@@ -148,7 +149,7 @@ export default function WishlistPage() {
               className={`${styles.proceedToCheckoutButton} ${
                 selectedItems.length > 0 ? '' : styles.disabled
               }`}
-              onClick={handleAddToWishlistClick}
+              onClick={handleAddToCartClick}
             >
               <span className={styles.proceedToCheckoutButtonText}>
                 Add & go to Cart

@@ -1,5 +1,9 @@
 import { useAppDispatch, useAppSelector } from '@app/hooks';
-import { deselectItem, selectItem } from '@features/cart/cartSlice';
+import {
+  deselectItem,
+  selectItem,
+  updateItemQuantity
+} from '@features/cart/cartSlice';
 import { removeFromCart } from '@features/cart/cartThunks';
 import styles from '@styles/Cart&Wishlist.module.css';
 import { Fragment } from 'react';
@@ -11,20 +15,42 @@ import type { ChangeEvent } from 'react';
 
 interface CartItemProps {
   item: Product;
+  quantity: number;
 }
 
-export default function CartItem({ item }: CartItemProps) {
+export default function CartItem({ item, quantity }: CartItemProps) {
   const dispatch = useAppDispatch();
 
   //----------------------------- State ------------------------------//
   const { currentUserData } = useAppSelector((state) => state.auth);
-  const { selectedItems } = useAppSelector((state) => state.cart);
+  const { selectedItems, cartItems } = useAppSelector((state) => state.cart);
 
   //------------------------- Event Handlers -------------------------//
   const handleDeleteItem = () => {
     dispatch(
       removeFromCart({ userId: currentUserData!.id, itemIds: [item.id] })
     );
+  };
+
+  const handleQuantityChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const newQuantity = parseInt(e.target.value);
+    if (!isNaN(newQuantity) && newQuantity >= 1) {
+      dispatch(updateItemQuantity({ id: item.id, quantity: newQuantity }));
+    }
+  };
+
+  const handleIncrement = () => {
+    const newQuantity = quantity + 1;
+    if (item.stock ? newQuantity <= item.stock : true) {
+      dispatch(updateItemQuantity({ id: item.id, quantity: newQuantity }));
+    }
+  };
+
+  const handleDecrement = () => {
+    const newQuantity = quantity - 1;
+    if (newQuantity >= 1) {
+      dispatch(updateItemQuantity({ id: item.id, quantity: newQuantity }));
+    }
   };
 
   const handleOnCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -74,9 +100,38 @@ export default function CartItem({ item }: CartItemProps) {
                     <span className={styles.brandSpan}>{item.brand}</span>
                   </p>
                 )}
-                <p className={styles.deleteItem} onClick={handleDeleteItem}>
-                  Delete
-                </p>
+                <div className={styles.itemActions}>
+                  <div className={styles.quantitySelector}>
+                    <button
+                      className={styles.quantityButton}
+                      onClick={handleDecrement}
+                      disabled={quantity <= 1}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      className={styles.quantityInput}
+                      value={quantity}
+                      onChange={handleQuantityChange}
+                      min="1"
+                      max={item.stock || undefined}
+                      step="1"
+                    />
+                    <button
+                      className={styles.quantityButton}
+                      onClick={handleIncrement}
+                      disabled={
+                        (item.stock && quantity >= item.stock) || undefined
+                      }
+                    >
+                      +
+                    </button>
+                  </div>
+                  <p className={styles.deleteItem} onClick={handleDeleteItem}>
+                    Delete
+                  </p>
+                </div>
               </div>
               <div className={styles.itemRightContent}>
                 <p className={styles.limitedDeal}>Limited time deal</p>
@@ -100,7 +155,10 @@ export default function CartItem({ item }: CartItemProps) {
           </div>
         </div>
       </div>
-      <hr className={styles.line} />
+      {cartItems?.length > 0 &&
+        cartItems[cartItems.length - 1]?.id !== item.id && (
+          <hr className={styles.line} />
+        )}
     </Fragment>
   );
 }

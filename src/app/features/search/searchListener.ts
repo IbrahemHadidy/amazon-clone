@@ -28,7 +28,6 @@ listen({
     const { searchTitle, searchCategory } = action.payload;
 
     if (isSearchInitialized) return;
-    dispatch(setIsSearchInitialized(true));
 
     if (typeof searchTitle === 'string') dispatch(setTitle(searchTitle));
     if (typeof searchCategory === 'string')
@@ -42,6 +41,8 @@ listen({
 
     dispatch(setCategories(categories));
     dispatch(setResults(initialResults));
+
+    dispatch(setIsSearchInitialized(true));
   }
 });
 

@@ -2,12 +2,16 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
 
 // Types
-import type { PayloadAction } from '@reduxjs/toolkit';
 import type Product from '@interfaces/product';
+import type { PayloadAction } from '@reduxjs/toolkit';
+
+interface ProductWithQuantity extends Product {
+  quantity?: number;
+}
 
 interface CartState {
   isCartInitialized: boolean;
-  cartItems: Product[];
+  cartItems: ProductWithQuantity[];
   selectedItems: number[];
 }
 
@@ -26,8 +30,20 @@ const cartSlice = createSlice({
     setIsCartInitialized: (state, action: PayloadAction<boolean>) => {
       state.isCartInitialized = action.payload;
     },
-    setCartItems: (state, action: PayloadAction<Product[]>) => {
+    setCartItems: (state, action: PayloadAction<ProductWithQuantity[]>) => {
       state.cartItems = action.payload;
+    },
+    updateItemQuantity: (
+      state,
+      action: PayloadAction<{ id: number; quantity: number }>
+    ) => {
+      const { id, quantity } = action.payload;
+      state.cartItems = state.cartItems.map((item) => {
+        if (item.id === id) {
+          return { ...item, quantity };
+        }
+        return item;
+      });
     },
     setSelectedItems: (state, action: PayloadAction<number[]>) => {
       state.selectedItems = action.payload;
@@ -51,6 +67,7 @@ export const initializeCart = createAction('cart/initialize');
 export const {
   setIsCartInitialized,
   setCartItems,
+  updateItemQuantity,
   setSelectedItems,
   selectItem,
   deselectItem,

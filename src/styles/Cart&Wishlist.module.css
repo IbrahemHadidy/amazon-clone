@@ -226,6 +226,75 @@
   display: flex;
   flex-direction: column;
 }
+.itemActions {
+  display: flex;
+  flex-direction: row;
+  gap: 15px; /* Reduced from 20px for a tighter look */
+  align-items: center;
+}
+
+.quantitySelector {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #d1d1d1; /* Matches .line color */
+  border-radius: 4px; /* Consistent with .discountPercentage */
+  overflow: hidden; /* Ensures buttons and input align seamlessly */
+}
+
+.quantityButton {
+  width: 24px;
+  height: 24px;
+  background-color: #f0f2f2;
+  border: none;
+  color: #2162a1;
+  font-size: 16px;
+  line-height: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quantityButton:hover:enabled {
+  background-color: #e0e2e2;
+  color: #1c5186;
+}
+
+.quantityButton:disabled {
+  color: #d1d1d1;
+  cursor: not-allowed;
+}
+
+.quantityInput {
+  width: 40px;
+  height: 24px;
+  border: none;
+  border-left: 1px solid #d1d1d1;
+  border-right: 1px solid #d1d1d1;
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  padding: 0;
+  background-color: #fff;
+}
+
+.quantityInput::-webkit-outer-spin-button,
+.quantityInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantityInput[type='number'] {
+  appearance: textfield;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.quantityInput:focus {
+  outline: none;
+  border-color: #2162a1;
+}
 
 @media (max-width: 768px) {
   .cart,

@@ -9,9 +9,7 @@ interface ProductImagesProps {
 }
 
 export default function ProductImages({ data }: ProductImagesProps) {
-  const [selectedImage, setSelectedImage] = useState<string>(
-    data.images[0] ?? data.thumbnail
-  );
+  const [selectedImage, setSelectedImage] = useState<string>(data.images[0]);
 
   const handleThumbnailClick = (image: string) => {
     setSelectedImage(image);
@@ -24,6 +22,7 @@ export default function ProductImages({ data }: ProductImagesProps) {
           className={styles.mainImage}
           src={selectedImage}
           alt="Product Image"
+          loading="lazy"
         />
         <div className={styles.thumbnailList}>
           {data.images.map((image) => (

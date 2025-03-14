@@ -18,7 +18,9 @@ export default function WishlistItem({ item }: WishlistItemProps) {
 
   //----------------------------- State ------------------------------//
   const { currentUserData } = useAppSelector((state) => state.auth);
-  const { selectedItems } = useAppSelector((state) => state.wishlist);
+  const { selectedItems, wishlistItems } = useAppSelector(
+    (state) => state.wishlist
+  );
 
   //------------------------- Event Handlers -------------------------//
   const handleDeleteItem = () => {
@@ -96,7 +98,10 @@ export default function WishlistItem({ item }: WishlistItemProps) {
           </div>
         </div>
       </div>
-      <hr className={styles.line} />
+      {wishlistItems?.length > 0 &&
+        wishlistItems[wishlistItems.length - 1]?.id !== item.id && (
+          <hr className={styles.line} />
+        )}
     </Fragment>
   );
 }

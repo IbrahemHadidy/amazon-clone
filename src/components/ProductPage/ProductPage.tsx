@@ -30,9 +30,21 @@ export default function ProductPage() {
         console.error(err);
       }
     })();
+
+    return () => {
+      setProductData(null);
+    };
   }, [id, navigate]);
 
-  if (!productData) return null;
+  if (!productData) {
+    return (
+      <div className="flex h-screen flex-col items-center justify-center gap-4">
+        <div className="border-t-primary h-16 w-16 animate-spin rounded-full border-8 border-gray-300"></div>
+        <span className="text-2xl font-medium text-gray-700">Loading...</span>
+      </div>
+    );
+  }
+
   return (
     <div className="mx-auto mb-10 max-w-[1500px]">
       <ProductOverview data={productData} />
